@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useProfileContext } from './Profile';
 export function ProfileHideDetails() {
+  const [click, setClick] = useState(true);
   const {
     value,
     setValue,
@@ -22,6 +23,7 @@ export function ProfileHideDetails() {
 
   const handleOnClick = () => {
     setValue(!value);
+    setClick(true);
     handleStopClick();
   };
   return (
@@ -30,8 +32,10 @@ export function ProfileHideDetails() {
         <div className="img" style={inlineImgStyle}></div>
       </div>
       <div className="profile__name__show-details">
-        <div className="profile__name">
-          {first} {last}
+        <div className={`profile__name-container ${!click && 'show-text'}`}>
+          <div onClick={() => setClick(!click)} className={`profile__name`}>
+            {first} {click ? (first.length + last.length > 16 ? `${last.substring(0, 1)}.` : last) : last}
+          </div>
         </div>
         <button
           type="button"

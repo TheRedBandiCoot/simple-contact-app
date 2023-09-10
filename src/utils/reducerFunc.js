@@ -1,4 +1,4 @@
-import { FETCH_ERROR, FETCH_SUCCESS, TOGGLE_SHOW_ALL } from './actionType';
+import { FETCH_ERROR, FETCH_SUCCESS, TOGGLE_SHOW_ALL, TOGGLE_THEME } from './actionType';
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -20,7 +20,13 @@ export const reducer = (state, action) => {
         ...state,
         showAll: !state.showAll,
       };
+    case TOGGLE_THEME:
+      return {
+        ...state,
+        theme: !state.theme,
+      };
     default:
-      return state;
+      throw new Error(`Not Found : ${action.type}`);
+    // return state;
   }
 };

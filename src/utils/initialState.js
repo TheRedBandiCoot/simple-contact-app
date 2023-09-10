@@ -3,4 +3,5 @@ export const initialState = {
   showAll: false,
   isLoading: true,
   isError: false,
+  theme: false,
 };

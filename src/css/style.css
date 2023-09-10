@@ -7,6 +7,15 @@
   box-sizing: border-box;
 }
 
+html::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #1c3047;
+}
+
 body {
   width: 100%;
   height: 100dvh;
@@ -15,6 +24,7 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .container {
@@ -30,7 +40,7 @@ body {
   padding: 0 1rem;
   padding-top: 5rem;
   margin: 0 auto;
-
+  margin-bottom: 15rem;
   & .profile-container {
     position: relative;
     --time: 0.5s;
@@ -38,7 +48,7 @@ body {
     height: 10.0625rem;
     flex-shrink: 0;
     border-radius: 1.3125rem;
-    background: linear-gradient(180deg, rgba(250, 250, 250, 0.8) 0%, rgba(250, 250, 250, 0) 100%);
+    /* background: linear-gradient(180deg, rgba(250, 250, 250, 0.8) 0%, rgba(250, 250, 250, 0) 100%); */
     box-shadow: 0px 3px 21px -6px rgba(0, 0, 0, 0.36);
     /* transform: scale(0.8); */
     transition: all var(--time) linear;
@@ -80,19 +90,40 @@ body {
       opacity: 1;
       transition: all 0.5s linear;
       transition-delay: 0s;
-      & .profile__name {
-        color: #9b9b9b;
-        text-align: center;
-        font-size: 1.75rem;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        letter-spacing: 0.1225rem;
-        opacity: 1;
-        white-space: nowrap;
-        transform: translateX(0) translateY(-1.5rem);
-        transition: all 0.3s linear;
-        transition-delay: 0.8s;
+      & .profile__name-container {
+        width: 19rem;
+        position: relative;
+        /* top: -1.5rem; */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 2.8rem;
+        margin-bottom: 4rem;
+        /* overflow-x: scroll; */
+        &::-webkit-scrollbar {
+          /* display: none; */
+          height: 0;
+        }
+        /* background-color: rgba(255, 75, 75, 0.35); */
+        & .profile__name {
+          /* position: absolute; */
+          cursor: pointer;
+          /* background-color: rgba(156, 255, 75, 0.35); */
+          color: #9b9b9b;
+          text-align: center;
+          font-size: 1.75rem;
+          font-style: normal;
+          width: calc(100% - 1rem);
+          font-weight: 700;
+          line-height: normal;
+          letter-spacing: 0.1225rem;
+          opacity: 1;
+          white-space: nowrap;
+          /* transform: translateX(0) translateY(-1.5rem); */
+          transform: translateX(0);
+          transition: all 0.3s linear;
+          transition-delay: 0.8s;
+        }
       }
       & .profile__show-details__btn {
         position: absolute;
@@ -177,7 +208,8 @@ body {
         z-index: 2;
         & .profile__name {
           opacity: 0;
-          transform: translateX(5rem) translateY(-1.5rem);
+          /* transform: translateX(5rem) translateY(-1.5rem); */
+          transform: translateX(5rem);
           transition-delay: 0.001s;
         }
         & .profile__show-details__btn {
@@ -328,6 +360,22 @@ body {
       }
     }
   }
+}
+.profile-container > .profile__name__show-details > .profile__name-container::-webkit-scrollbar-thumb {
+  /* background-color: transparent !important; */
+}
+.profile-container > .profile__name__show-details > .profile__name-container.show-text {
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    height: 3px !important;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #7f7e7e28 !important;
+    /* background-color: red !important; */
+  }
+}
+.profile-container.show > .profile__name__show-details > .profile__name-container::-webkit-scrollbar-thumb {
+  /* background-color: transparent !important; */
 }
 
 @media (max-width: 5000px) {
